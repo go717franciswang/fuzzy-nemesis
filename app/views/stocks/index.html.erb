@@ -1,0 +1,9 @@
+<%= will_paginate %>
+
+<ul>
+  <% @stocks.each do |stock| %>
+    <li><%= stock.name %>, <%= stock.quote %></li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
