@@ -1,0 +1,21 @@
+<h1><%= @stock.name %></h1>
+<%= will_paginate @prices %>
+<table>
+  <tr>
+    <td>Date</td>
+    <td>High</td>
+    <td>Low</td>
+    <td>Open</td>
+    <td>Close</td>
+  </tr>
+  <% @prices.each do |price| -%>
+    <tr>
+      <td><%= price.date_at.to_s %></td>
+      <td><%= price.high %></td>
+      <td><%= price.low %></td>
+      <td><%= price.open %></td>
+      <td><%= price.close %></td>
+    </tr>
+  <% end -%>
+</table>
+<%= will_paginate @prices %>

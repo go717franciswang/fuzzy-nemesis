@@ -11,6 +11,9 @@ gem 'bootstrap-will_paginate'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'spork'
 end
 
 group :production do
@@ -35,6 +38,8 @@ gem 'jquery-rails'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails'
+  gem 'rb-inotify', '~> 0.8.8'
+  gem 'libnotify'
 end
 
 # To use ActiveModel has_secure_password

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117054520) do
+ActiveRecord::Schema.define(:version => 20130118075036) do
+
+  create_table "historical_prices", :force => true do |t|
+    t.integer  "stock_id"
+    t.date     "date_at"
+    t.float    "high"
+    t.float    "low"
+    t.float    "open"
+    t.float    "close"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "historical_prices", ["stock_id", "date_at"], :name => "index_historical_prices_on_stock_id_and_date_at", :unique => true
 
   create_table "stocks", :force => true do |t|
     t.string   "name"
