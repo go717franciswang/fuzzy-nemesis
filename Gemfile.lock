@@ -184,7 +184,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   faker
   guard-rspec
   guard-spork

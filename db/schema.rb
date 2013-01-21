@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118075036) do
+ActiveRecord::Schema.define(:version => 20130120215124) do
 
   create_table "historical_prices", :force => true do |t|
     t.integer  "stock_id"
@@ -25,6 +25,23 @@ ActiveRecord::Schema.define(:version => 20130118075036) do
   end
 
   add_index "historical_prices", ["stock_id", "date_at"], :name => "index_historical_prices_on_stock_id_and_date_at", :unique => true
+
+  create_table "simulation_logs", :force => true do |t|
+    t.integer  "simulation_id"
+    t.date     "date_at"
+    t.float    "fund"
+    t.integer  "share"
+    t.float    "net_value"
+    t.string   "event"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "simulations", :force => true do |t|
+    t.integer  "stock_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stocks", :force => true do |t|
     t.string   "name"

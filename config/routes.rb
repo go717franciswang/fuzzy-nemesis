@@ -1,5 +1,8 @@
 StockSimulator::Application.routes.draw do
-  resources :stocks
+  resources :stocks do
+    get 'simulate', on: :member, to: 'simulation#new'
+    post 'simulate', on: :member, to: 'simulation#create'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

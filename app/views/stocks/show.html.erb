@@ -11,10 +11,10 @@
   <% @prices.each do |price| -%>
     <tr>
       <td><%= price.date_at.to_s %></td>
-      <td><%= price.high %></td>
-      <td><%= price.low %></td>
-      <td><%= price.open %></td>
-      <td><%= price.close %></td>
+      <td><%= price.high.round(2) %></td>
+      <td><%= price.low.round(2) %></td>
+      <td><%= price.open.round(2) %></td>
+      <td><%= price.close.round(2) %></td>
     </tr>
   <% end -%>
 </table>

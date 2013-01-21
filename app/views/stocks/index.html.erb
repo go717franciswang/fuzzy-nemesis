@@ -2,7 +2,10 @@
 
 <ul>
   <% @stocks.each do |stock| %>
-    <li><%= stock.name %>, <%= stock.quote %></li>
+    <li><%= link_to stock.name, stock_path(stock) %>, 
+    <%= stock.quote %>,
+    <%= link_to 'simulate', simulate_stock_path(stock) %>
+    </li>
   <% end %>
 </ul>
 
