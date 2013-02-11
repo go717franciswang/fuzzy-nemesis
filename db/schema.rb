@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120215124) do
+ActiveRecord::Schema.define(:version => 20130211085054) do
+
+  create_table "annuity_freq_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "historical_prices", :force => true do |t|
     t.integer  "stock_id"
@@ -26,6 +32,12 @@ ActiveRecord::Schema.define(:version => 20130120215124) do
 
   add_index "historical_prices", ["stock_id", "date_at"], :name => "index_historical_prices_on_stock_id_and_date_at", :unique => true
 
+  create_table "scenarios", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "simulation_logs", :force => true do |t|
     t.integer  "simulation_id"
     t.date     "date_at"
@@ -37,10 +49,22 @@ ActiveRecord::Schema.define(:version => 20130120215124) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "simulation_scenarios", :force => true do |t|
+    t.integer  "simulation_id"
+    t.integer  "scenario_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "simulations", :force => true do |t|
     t.integer  "stock_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.float    "start_amount"
+    t.float    "annuity"
+    t.integer  "annuity_freq_id"
   end
 
   create_table "stocks", :force => true do |t|

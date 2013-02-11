@@ -5,6 +5,12 @@ class Stock < ActiveRecord::Base
   validates :name, presence: true
   validates :quote, presence: true
 
+  def earliest_date
+    last_record = self.historical_prices.last
+    return Date.today - 1 unless last_record
+    return last_record.date_at if last_record
+  end
+
   def simulate(start_date, end_date, sfund, sshare, logics = [])
     simulation = simulations.create
     
