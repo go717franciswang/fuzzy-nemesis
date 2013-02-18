@@ -1,0 +1,44 @@
+<h1>Simulate <%= @stock.name %></h1>
+<%= form_for @simulation, url: simulate_stock_path(@stock),
+  method: :post do |f| %>
+  <div>
+    <%= f.label :start_date, 'Start Date' %>
+    <%= f.date_select :start_date, 
+      start_year: @stock.earliest_date.year, 
+      end_year: Date.today.year 
+    %>
+  </div>
+
+  <div>
+    <%= f.label :end_date, 'End Date' %>
+    <%= f.date_select :end_date, 
+      start_year: @stock.earliest_date.year, 
+      end_year: Date.today.year 
+    %>
+  </div>
+
+  <div>
+    <%= f.label :start_amount, 'Start Amount' %>
+    <%= f.text_field :start_amount %>
+  </div>
+
+  <div>
+    <%= f.label :start_shares, 'Start Shares' %>
+    <%= f.text_field :start_shares%>
+  </div>
+
+  <div>
+    <%= f.label :annuity, 'Annuity' %>
+    <%= f.text_field :annuity%>
+  </div>
+
+  <div>
+    <%= f.label :annuity_freq_type_id, 'Annuity Frequency' %>
+    <%= f.collection_select(:annuity_freq_type_id, 
+                            @annuity_freq_types, :id, :name) %>
+  </div>
+
+  <%= f.submit 'Run' %>
+<% end %>
+  
+  

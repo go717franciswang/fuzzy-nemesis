@@ -1,0 +1,19 @@
+<h1>Simulations Results for <%= @subject_name %></h1>
+<% if @simulations.empty? -%>
+  <tr><td>There are no simulations</td></tr>
+<% else -%>
+  <table>
+    <tr>
+      <th>Symbol</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th>Start date</th>
+      <th>End date</tj>
+      <th>Start amount</th>
+      <th>Start Shares</th>
+      <th>Annuity</th>
+      <th>Annuity Freq</th>
+    </tr>
+    <%= render @simulations %>
+  </table>
+<% end -%>

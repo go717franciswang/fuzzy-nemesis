@@ -1,0 +1,13 @@
+<h1>Simulation Logs</h1>
+<%= will_paginate @simulation_logs %>
+<table>
+  <tr>
+    <th>Date at</th>
+    <th>Event</th>
+    <th>Fund</th>
+    <th>Share</th>
+    <th>Net Value</th>
+  </tr>
+  <%= render @simulation_logs %>
+</table>
+<%= will_paginate @simulation_logs %>

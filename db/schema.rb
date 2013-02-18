@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211085054) do
+ActiveRecord::Schema.define(:version => 20130218001410) do
 
   create_table "annuity_freq_types", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20130211085054) do
     t.float    "close"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "volume"
+    t.float    "adj_close"
   end
 
   add_index "historical_prices", ["stock_id", "date_at"], :name => "index_historical_prices_on_stock_id_and_date_at", :unique => true
@@ -58,20 +60,27 @@ ActiveRecord::Schema.define(:version => 20130211085054) do
 
   create_table "simulations", :force => true do |t|
     t.integer  "stock_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.date     "start_date"
     t.date     "end_date"
     t.float    "start_amount"
     t.float    "annuity"
-    t.integer  "annuity_freq_id"
+    t.integer  "annuity_freq_type_id"
+    t.integer  "start_shares"
   end
 
   create_table "stocks", :force => true do |t|
     t.string   "name"
     t.string   "quote"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "sector"
+    t.string   "industry"
+    t.integer  "full_time_employees"
+    t.datetime "refreshed_at"
   end
 
   add_index "stocks", ["quote"], :name => "index_stocks_on_quote", :unique => true

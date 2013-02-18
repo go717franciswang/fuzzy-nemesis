@@ -1,0 +1,18 @@
+<tr>
+  <% if simulation.stock -%>
+    <td><%= link_to simulation.stock.quote.upcase, 
+      logs_simulation_path(simulation.id) %></td>
+  <% else -%>
+    <td></td>
+  <% end -%>
+  <td><%= simulation.created_at %></td>
+  <td><%= simulation.updated_at %></td>
+  <td><%= simulation.start_date %></td>
+  <td><%= simulation.end_date %></td>
+  <td><%= simulation.start_amount %></td>
+  <td><%= simulation.start_shares %></td>
+  <td><%= simulation.annuity %></td>
+  <% if simulation.annuity_freq_type -%>
+    <td><%= simulation.annuity_freq_type.name %></td>
+  <% end -%>
+</tr>

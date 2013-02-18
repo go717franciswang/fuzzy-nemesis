@@ -1,0 +1,2 @@
+module SimulationLogsHelper
+end

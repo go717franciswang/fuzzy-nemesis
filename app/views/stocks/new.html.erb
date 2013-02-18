@@ -1,0 +1,26 @@
+<h1>Register a company</h1>
+<%= form_for @stock, url: @stock, method: :post do |f| %>
+
+  <% if @stock.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        The form contains <%= pluralize(@stock.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% @stock.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= f.label :quote, 'Symbol' %>
+    <%= f.text_field :quote %>
+  </div>
+  <div>
+    <%= f.label :name, 'Company name' %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit 'Register' %>
+<% end -%>
