@@ -1,6 +1,6 @@
 StockSimulator::Application.routes.draw do
 
-  root to: 'stock#index'
+  root to: 'stocks#index'
 
   resources :stocks do
     get 'simulate', on: :member, to: 'simulations#new'
@@ -11,7 +11,7 @@ StockSimulator::Application.routes.draw do
   end
 
   resources :simulations do
-    get 'logs', on: :member, to: 'simulation_logs#index'
+    get 'logs', on: :member, to: 'simulation_logs#show'
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

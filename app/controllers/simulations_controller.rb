@@ -15,7 +15,8 @@ class SimulationsController < ApplicationController
       # @annuity_freq_types = AnnuityFreqType.all
       # render 'new'
     else
-      redirect_to simulate_stock_path(@simulation.stock_id)
+      @annuity_freq_types = AnnuityFreqType.all
+      render 'new'
     end
   end
 
@@ -26,13 +27,13 @@ class SimulationsController < ApplicationController
       @simulations = @stock.simulations.find(
         :all, 
         include: [:annuity_freq_type, :stock]
-      )
+      ).reverse
     else
       @subject_name = 'All'
       @simulations = Simulation.find(
         :all, 
         include: [:annuity_freq_type, :stock]
-      )
+      ).reverse
     end
   end
 end

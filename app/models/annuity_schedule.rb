@@ -14,9 +14,7 @@ class AnnuitySchedule
     when 'Monthly'
       return cur_date.next_month
     when 'Quarterly'
-      tmp_date = cur_date.dup
-      3.times { tmp_date = tmp_date.next_month }
-      return tmp_date
+      return cur_date.next_month(3)
     when 'Yearly'
       return cur_date.next_year
     end

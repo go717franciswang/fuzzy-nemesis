@@ -11,7 +11,7 @@ class Stock < ActiveRecord::Base
   validates :quote, presence: true
 
   def earliest_date
-    last_record = self.historical_prices.last
+    last_record = self.historical_prices.order('date_at desc').last
     return Date.today - 1 unless last_record
     return last_record.date_at if last_record
   end
@@ -35,11 +35,11 @@ class Stock < ActiveRecord::Base
     if result['FullTimeEmployees'] && result['FullTimeEmployees'] != 'N/A'
       self.full_time_employees = result['FullTimeEmployees'].to_i
     end
-    puts "#{self.start_date}"
-    puts "#{self.end_date}"
-    puts "#{self.sector}"
-    puts "#{self.industry}"
-    puts "#{self.full_time_employees}"
+    # puts "#{self.start_date}"
+    # puts "#{self.end_date}"
+    # puts "#{self.sector}"
+    # puts "#{self.industry}"
+    # puts "#{self.full_time_employees}"
     self.save
   end
 
@@ -60,9 +60,9 @@ class Stock < ActiveRecord::Base
                :open, :close, :volume, :adj_close]
     end_at = [start_at + batch_size, self.end_date].min
 
-    puts "start_at: #{start_at}"
-    puts "end_at: #{end_at}"
-    puts "end date: #{self.end_date}"
+    # puts "start_at: #{start_at}"
+    # puts "end_at: #{end_at}"
+    # puts "end date: #{self.end_date}"
     while start_at < self.end_date
       query = "select * from yahoo.finance.historicaldata 
         where symbol = \"#{self.quote}\" and startDate = 

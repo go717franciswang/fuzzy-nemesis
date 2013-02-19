@@ -1,6 +1,7 @@
 <h1>Simulate <%= @stock.name %></h1>
 <%= form_for @simulation, url: simulate_stock_path(@stock),
   method: :post do |f| %>
+  <%= render 'shared/errors', builder: f %>
   <div>
     <%= f.label :start_date, 'Start Date' %>
     <%= f.date_select :start_date, 
@@ -36,6 +37,14 @@
     <%= f.label :annuity_freq_type_id, 'Annuity Frequency' %>
     <%= f.collection_select(:annuity_freq_type_id, 
                             @annuity_freq_types, :id, :name) %>
+  </div>
+
+  <div>
+    Scenarios
+    <%= f.fields_for :simulation_scenarios do |builder| %>
+      <%= render 'simulation_scenario_fields', f: builder %>
+    <% end -%>
+    <%= link_to_add_fields 'Add Scenario', f, :simulation_scenarios %>
   </div>
 
   <%= f.submit 'Run' %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218001410) do
+ActiveRecord::Schema.define(:version => 20130218224157) do
 
   create_table "annuity_freq_types", :force => true do |t|
     t.string   "name"
@@ -53,9 +53,15 @@ ActiveRecord::Schema.define(:version => 20130218001410) do
 
   create_table "simulation_scenarios", :force => true do |t|
     t.integer  "simulation_id"
-    t.integer  "scenario_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "action"
+    t.float    "amount"
+    t.string   "unit"
+    t.string   "operator"
+    t.string   "stat"
+    t.integer  "timespan_length"
+    t.string   "timespan_unit"
   end
 
   create_table "simulations", :force => true do |t|

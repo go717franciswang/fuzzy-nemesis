@@ -1,0 +1,25 @@
+<fieldset class="scenario">
+  <%= render 'shared/errors', builder: f %>
+  <%= f.select :action, [:Buy, :Sell] %>
+  <%= f.text_field :amount %>
+  <%= f.select :unit, [
+    ['Shares', :Shares],
+    ['Dollar shares', :Dollar_shares],
+    ['% of fund', :Pcg_of_fund],
+    ['% of shares', :Pcg_of_shares],
+  ]%>
+  <br />
+  when stock price is
+  <%= f.select :operator, [
+    ['Greater than or equal to', :Gt_eq],
+    ['Less than or equal to', :Lt_eq],
+  ] %>
+  the
+  <%= f.select :stat, [:Max, :Min, :Avg] %>
+  <br />
+  of past
+  <%= f.text_field :timespan_length %>
+  <%= f.select :timespan_unit, [:Days, :Weeks, :Months, :Quarters, :Years] %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to 'remove', '#', class: 'remove_fields' %>
+</fieldset>

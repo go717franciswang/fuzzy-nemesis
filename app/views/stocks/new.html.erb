@@ -1,19 +1,6 @@
 <h1>Register a company</h1>
 <%= form_for @stock, url: @stock, method: :post do |f| %>
-
-  <% if @stock.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-error">
-        The form contains <%= pluralize(@stock.errors.count, "error") %>.
-      </div>
-      <ul>
-      <% @stock.errors.full_messages.each do |msg| %>
-        <li>* <%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
+  <%= render 'shared/errors', builder: f %>
   <div>
     <%= f.label :quote, 'Symbol' %>
     <%= f.text_field :quote %>

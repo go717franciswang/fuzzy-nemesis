@@ -1,0 +1,18 @@
+<tr>
+  <td><%= stock.quote.upcase %></td>
+  <td><%= link_to stock.name, stock_path(stock) %></td>
+  <td><%= stock.start_date %></td>
+  <td><%= stock.end_date %></td>
+  <td><%= stock.sector %></td>
+  <td><%= stock.industry %></td>
+  <td><%= stock.full_time_employees %></td>
+  <td>
+    <% if stock.refreshed_today? %>
+      <%= stock.refreshed_at %>,
+    <% else -%>
+      <%= link_to 'refresh', refresh_stock_path(stock), method: :post %>
+    <% end -%>
+  </td>
+  <td><%= link_to 'simulate', simulate_stock_path(stock) %></td>
+  <td><%= link_to 'results', simulations_stock_path(stock) %></td>
+</tr>
