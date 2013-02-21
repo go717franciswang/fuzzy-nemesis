@@ -1,13 +1,13 @@
-<h1>Register a company</h1>
+<h1><%= t 'stock.register' %></h1>
 <%= form_for @stock, url: @stock, method: :post do |f| %>
   <%= render 'shared/errors', builder: f %>
   <div>
-    <%= f.label :quote, 'Symbol' %>
+    <%= f.label :quote, t('stock.symbol') %>
     <%= f.text_field :quote %>
   </div>
   <div>
-    <%= f.label :name, 'Company name' %>
+    <%= f.label :name, t('stock.company') %>
     <%= f.text_field :name %>
   </div>
-  <%= f.submit 'Register' %>
+  <%= f.submit t('stock.register') %>
 <% end -%>

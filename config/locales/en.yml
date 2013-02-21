@@ -2,4 +2,69 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  lang:
+    uage: "Lanuage"
+    en: "English"
+    zh-CN: "中文"
+  title: "Stock Simulator"
+  stock:
+    index: "Stock index"
+    symbol: "Symbol"
+    company: "Company"
+    start: "Start date"
+    end: "End date"
+    sector: "Sector"
+    industry: "Industry"
+    employees: "Employees"
+    refreshed: "Refreshed at"
+    simulate: "Simulate"
+    simulation_results: "Simulation results"
+    no_simulation_results: "There are no simulation results."
+    register: "Register stock"
+    date: "Date"
+    high: "High"
+    low: "Low"
+    Open: "Open"
+    close: "Close"
+    volume: "Volume"
+    adj_close: "Adj close"
+    refresh: "Refresh"
+  simulation:
+    created_at: "Created at"
+    updated_at: "Updated at"
+    amount: "Starting amount"
+    shares: "Starting shares"
+    annuity: "Annuity"
+    annuity_freq: "Annuity Frequency"
+    scenario: "Scenarios"
+    add_scenario: "Add a scenario"
+    run: "Run"
+    action:
+      buy: "Buy"
+      sell: "Sell"
+    unit:
+      shares: "Shares"
+      dshares: "Dollar shares"
+      pfund: "% of fund"
+      pshares: "% of shares"
+    tunit:
+      day: "Days"
+      week: "Weeks"
+      month: "Months"
+      quarter: "Quarters"
+      year: "Years"
+    when: 
+      price: "When stock price is"
+      past: "in the past"
+    operator:
+      gt_eq: 'Greater than or equal to'
+      lt_eq: 'Less than or equal to'
+    log:
+      title: "Simulation Log"
+      event: "Event"
+      fund: "Fund"
+      net_val: "Net value"
+  error:
+    count: 'The form contains '
+    e: 'error'
+

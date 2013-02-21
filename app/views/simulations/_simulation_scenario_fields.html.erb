@@ -1,25 +1,37 @@
 <fieldset class="scenario">
   <%= render 'shared/errors', builder: f %>
-  <%= f.select :action, [:Buy, :Sell] %>
+  <%= f.select :action, [
+    [t('simulation.action.buy'), :Buy], 
+    [t('simulation.action.sell'), :Sell],
+  ] %>
   <%= f.text_field :amount %>
   <%= f.select :unit, [
-    ['Shares', :Shares],
-    ['Dollar shares', :Dollar_shares],
-    ['% of fund', :Pcg_of_fund],
-    ['% of shares', :Pcg_of_shares],
+    [t('simulation.unit.shares'), :Shares],
+    [t('simulation.unit.dshares'), :Dollar_shares],
+    [t('simulation.unit.pfund'), :Pcg_of_fund],
+    [t('simulation.unit.pshares'), :Pcg_of_shares],
   ]%>
   <br />
-  when stock price is
+  <%= t 'simulation.when.price' %>
   <%= f.select :operator, [
-    ['Greater than or equal to', :Gt_eq],
-    ['Less than or equal to', :Lt_eq],
+    [t('simulation.operator.gt_eq'), :Gt_eq],
+    [t('simulation.operator.lt_eq'), :Lt_eq],
   ] %>
-  the
-  <%= f.select :stat, [:Max, :Min, :Avg] %>
+  <%= f.select :stat, [
+    [t('simulation.stat.max'), :Max], 
+    [t('simulation.stat.min'), :Min], 
+    [t('simulation.stat.avg'), :Avg],
+  ] %>
   <br />
-  of past
+  <%= t 'simulation.when.past' %>
   <%= f.text_field :timespan_length %>
-  <%= f.select :timespan_unit, [:Days, :Weeks, :Months, :Quarters, :Years] %>
+  <%= f.select :timespan_unit, [
+    [t('simulation.tunit.day'), :Days], 
+    [t('simulation.tunit.week'), :Weeks], 
+    [t('simulation.tunit.month'), :Months], 
+    [t('simulation.tunit.quarter'), :Quarters], 
+    [t('simulation.tunit.year'), :Years]
+  ] %>
   <%= f.hidden_field :_destroy %>
   <%= link_to 'remove', '#', class: 'remove_fields' %>
 </fieldset>

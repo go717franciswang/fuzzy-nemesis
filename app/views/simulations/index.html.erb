@@ -1,18 +1,18 @@
-<h1>Simulations Results for <%= @subject_name %></h1>
+<h1><%= t 'stock.simulation_results' %>: <%= @subject_name %></h1>
 <% if @simulations.empty? -%>
-  <tr><td>There are no simulations</td></tr>
+  <tr><td><%= t 'stock.no_simulation_results' %></td></tr>
 <% else -%>
   <table>
     <tr>
-      <th>Symbol</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Start date</th>
-      <th>End date</tj>
-      <th>Start amount</th>
-      <th>Start Shares</th>
-      <th>Annuity</th>
-      <th>Annuity Freq</th>
+      <th><%= t 'stock.symbol' %></th>
+      <th><%= t 'simulation.created_at' %></th>
+      <th><%= t 'simulation.updated_at' %></th>
+      <th><%= t 'stock.start' %></th>
+      <th><%= t 'stock.end' %></th>
+      <th><%= t 'simulation.amount' %></th>
+      <th><%= t 'simulation.shares' %></th>
+      <th><%= t 'simulation.annuity' %></th>
+      <th><%= t 'simulation.annuity_freq' %></th>
     </tr>
     <%= render @simulations %>
   </table>

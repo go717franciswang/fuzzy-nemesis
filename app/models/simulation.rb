@@ -59,11 +59,11 @@ class Simulation < ActiveRecord::Base
       self.simulation_scenarios.each do |scenario|
         stat = statistics.get_stat(scenario[:stat], date_at, 
              scenario[:timespan_length], scenario[:timespan_unit])
-        puts "date_at: #{date_at}"
-        puts "stat type: #{scenario[:stat]}"
-        puts "timespan_length: #{scenario[:timespan_length]}"
-        puts "timespan_unit: #{scenario[:timespan_unit]}"
-        puts "stat: #{stat}"
+        # puts "date_at: #{date_at}"
+        # puts "stat type: #{scenario[:stat]}"
+        # puts "timespan_length: #{scenario[:timespan_length]}"
+        # puts "timespan_unit: #{scenario[:timespan_unit]}"
+        # puts "stat: #{stat}"
         case scenario[:operator].to_sym
         when :Gt_eq
           take_action = (price[:low] <= stat)
@@ -83,9 +83,9 @@ class Simulation < ActiveRecord::Base
           when :Pcg_of_shares
             scenario[:amount].to_f / 100 * shares * stat
           end
-          puts "unit: #{scenario[:unit]}"
-          puts "dollar_amount: #{dollar_amount}"
-          puts "fund: #{fund}"
+          # puts "unit: #{scenario[:unit]}"
+          # puts "dollar_amount: #{dollar_amount}"
+          # puts "fund: #{fund}"
 
           stat = price[:high] if stat > price[:high]
           stat = price[:low] if stat < price[:low]

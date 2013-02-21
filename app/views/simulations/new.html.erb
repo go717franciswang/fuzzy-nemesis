@@ -1,9 +1,9 @@
-<h1>Simulate <%= @stock.name %></h1>
+<h1><%= t 'stock.simulate' %><%= @stock.name %></h1>
 <%= form_for @simulation, url: simulate_stock_path(@stock),
   method: :post do |f| %>
   <%= render 'shared/errors', builder: f %>
   <div>
-    <%= f.label :start_date, 'Start Date' %>
+    <%= f.label :start_date, t('stock.start') %>
     <%= f.date_select :start_date, 
       start_year: @stock.earliest_date.year, 
       end_year: Date.today.year 
@@ -11,7 +11,7 @@
   </div>
 
   <div>
-    <%= f.label :end_date, 'End Date' %>
+    <%= f.label :end_date, t('stock.end') %>
     <%= f.date_select :end_date, 
       start_year: @stock.earliest_date.year, 
       end_year: Date.today.year 
@@ -19,35 +19,35 @@
   </div>
 
   <div>
-    <%= f.label :start_amount, 'Start Amount' %>
+    <%= f.label :start_amount, t('simulation.amount') %>
     <%= f.text_field :start_amount %>
   </div>
 
   <div>
-    <%= f.label :start_shares, 'Start Shares' %>
+    <%= f.label :start_shares, t('simulation.shares') %>
     <%= f.text_field :start_shares%>
   </div>
 
   <div>
-    <%= f.label :annuity, 'Annuity' %>
+    <%= f.label :annuity, t('simulation.annuity') %>
     <%= f.text_field :annuity%>
   </div>
 
   <div>
-    <%= f.label :annuity_freq_type_id, 'Annuity Frequency' %>
+    <%= f.label :annuity_freq_type_id, t('simulation.annuity_freq') %>
     <%= f.collection_select(:annuity_freq_type_id, 
                             @annuity_freq_types, :id, :name) %>
   </div>
 
   <div>
-    Scenarios
+    <%= t 'simulation.scenario' %>
     <%= f.fields_for :simulation_scenarios do |builder| %>
       <%= render 'simulation_scenario_fields', f: builder %>
     <% end -%>
-    <%= link_to_add_fields 'Add Scenario', f, :simulation_scenarios %>
+    <%= link_to_add_fields t('simulation.add_scenario'), f, :simulation_scenarios %>
   </div>
 
-  <%= f.submit 'Run' %>
+  <%= f.submit t('simulation.run') %>
 <% end %>
   
   

@@ -1,12 +1,12 @@
-<h1>Simulation Logs</h1>
+<h1><%= t 'simulation.log.title' %></h1>
 <%= will_paginate @simulation_logs %>
 <table>
   <tr>
-    <th>Date at</th>
-    <th>Event</th>
-    <th>Fund</th>
-    <th>Share</th>
-    <th>Net Value</th>
+    <th><%= t 'stock.date' %></th>
+    <th><%= t 'simulation.log.event' %></th>
+    <th><%= t 'simulation.log.fund' %></th>
+    <th><%= t 'simulation.unit.shares' %></th>
+    <th><%= t 'simulation.log.net_val' %></th>
   </tr>
   <%= render @simulation_logs %>
 </table>

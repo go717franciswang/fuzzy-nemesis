@@ -10,9 +10,9 @@
     <% if stock.refreshed_today? %>
       <%= stock.refreshed_at %>,
     <% else -%>
-      <%= link_to 'refresh', refresh_stock_path(stock), method: :post %>
+      <%= link_to t('stock.refresh'), refresh_stock_path(stock), method: :post %>
     <% end -%>
   </td>
-  <td><%= link_to 'simulate', simulate_stock_path(stock) %></td>
-  <td><%= link_to 'results', simulations_stock_path(stock) %></td>
+  <td><%= link_to t('stock.simulate'), simulate_stock_path(stock) %></td>
+  <td><%= link_to t('stock.simulation_results'), simulations_stock_path(stock) %></td>
 </tr>

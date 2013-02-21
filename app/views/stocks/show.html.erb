@@ -1,20 +1,20 @@
 <h1><%= @stock.name %></h1>
 <div>
-  <%= link_to 'Run simulation', simulate_stock_path(@stock.id) %>
+  <%= link_to t('stock.simulate'), simulate_stock_path(@stock.id) %>
 </div>
 <div>
-  <%= link_to 'View simulation results', simulations_stock_path(@stock.id) %>
+  <%= link_to t('stock.simulation_results'), simulations_stock_path(@stock.id) %>
 </div>
 <%= will_paginate @prices %>
 <table>
   <tr>
-    <td>Date</td>
-    <td>High</td>
-    <td>Low</td>
-    <td>Open</td>
-    <td>Close</td>
-    <td>Volume</td>
-    <td>Adj Close</td>
+    <td><%= t 'stock.date' %></td>
+    <td><%= t 'stock.high' %></td>
+    <td><%= t 'stock.low' %></td>
+    <td><%= t 'stock.open' %></td>
+    <td><%= t 'stock.close' %></td>
+    <td><%= t 'stock.volume' %></td>
+    <td><%= t 'stock.adj_close' %></td>
   </tr>
   <% @prices.each do |price| -%>
     <tr>
