@@ -39,6 +39,12 @@ en:
     shares: "Starting shares"
     annuity: "Annuity"
     annuity_freq: "Annuity Frequency"
+    funit:
+      daily: "Daily"
+      weekly: "Weekly"
+      monthly: "Monthly"
+      quarterly: "Quarterly"
+      yearly: "Yearly"
     scenario: "Scenarios"
     add_scenario: "Add a scenario"
     run: "Run"

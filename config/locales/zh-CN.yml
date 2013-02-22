@@ -38,6 +38,12 @@ zh-CN:
     shares: "起始股份"
     annuity: "定期资金"
     annuity_freq: "定期资金频率"
+    funit:
+      daily: "每日"
+      weekly: "每周"
+      monthly: "每月"
+      quarterly: "每季"
+      yearly: "每年"
     scenario: "情况"
     add_scenario: "添加情况"
     run: "动起来！"
@@ -47,7 +53,7 @@ zh-CN:
     unit:
       shares: "股份"
       dshares: "现金股份"
-      pfund: "%的先进"
+      pfund: "%的现金"
       pshares: "%的股份"
     tunit:
       day: "日"

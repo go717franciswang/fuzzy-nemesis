@@ -1,4 +1,4 @@
-<h1><%= t 'stock.simulate' %><%= @stock.name %></h1>
+<h1><%= t 'stock.simulate' %> <%= @stock.name %></h1>
 <%= form_for @simulation, url: simulate_stock_path(@stock),
   method: :post do |f| %>
   <%= render 'shared/errors', builder: f %>
@@ -36,7 +36,7 @@
   <div>
     <%= f.label :annuity_freq_type_id, t('simulation.annuity_freq') %>
     <%= f.collection_select(:annuity_freq_type_id, 
-                            @annuity_freq_types, :id, :name) %>
+                            @annuity_freq_types, :id, :localize_name) %>
   </div>
 
   <div>
