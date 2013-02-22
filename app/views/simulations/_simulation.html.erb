@@ -15,4 +15,6 @@
   <% if simulation.annuity_freq_type -%>
     <td><%= simulation.annuity_freq_type.name %></td>
   <% end -%>
+  <td><%= link_to 'X', simulation_path(simulation.id), 
+    method: :delete, confirm: t('message.confirm') %></td>
 </tr>

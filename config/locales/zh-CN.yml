@@ -6,6 +6,8 @@ zh-CN:
     en: "English"
     zh-CN: "中文"
   title: "股票模拟器"
+  message:
+    confirm: "您确定吗？"
   stock:
     index: "股票列表"
     symbol: "代码"
@@ -28,6 +30,7 @@ zh-CN:
     volume: "成交量"
     adj_close: "调整关闭"
     refresh: "更新"
+    delete: "删除"
   simulation:
     created_at: "创建时间"
     updated_at: "更新时间"
@@ -263,4 +266,8 @@ zh-CN:
   #activerecord:
   #  errors:
   #    <<: *errors
+  will_paginate:
+    previous_label: "&#8592; 前"
+    next_label: "后 &#8594;"
+    page_gap: "&hellip;"
 

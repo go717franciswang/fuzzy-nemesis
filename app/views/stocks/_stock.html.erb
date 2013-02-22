@@ -15,4 +15,6 @@
   </td>
   <td><%= link_to t('stock.simulate'), simulate_stock_path(stock) %></td>
   <td><%= link_to t('stock.simulation_results'), simulations_stock_path(stock) %></td>
+  <td><%= link_to 'X', stock_path(stock), 
+    method: :delete, confirm: t('message.confirm') %></td>
 </tr>

@@ -34,4 +34,12 @@ class StocksController < ApplicationController
       "refreshed shortly"
     redirect_to stocks_path
   end
+
+  def destroy
+    @stock = Stock.find(params[:id])
+    msg = "Company #{@stock.name} have been deleted"
+    @stock.destroy
+    flash[:success] = msg
+    redirect_to stocks_path
+  end
 end

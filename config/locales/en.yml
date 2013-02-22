@@ -7,6 +7,8 @@ en:
     en: "English"
     zh-CN: "中文"
   title: "Stock Simulator"
+  message:
+    confirm: "Are you sure?"
   stock:
     index: "Stock index"
     symbol: "Symbol"
@@ -29,6 +31,7 @@ en:
     volume: "Volume"
     adj_close: "Adj close"
     refresh: "Refresh"
+    delete: "Delete"
   simulation:
     created_at: "Created at"
     updated_at: "Updated at"
@@ -67,4 +70,8 @@ en:
   error:
     count: 'The form contains '
     e: 'error'
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
 

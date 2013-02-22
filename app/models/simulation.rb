@@ -103,13 +103,15 @@ class Simulation < ActiveRecord::Base
           end
         end
       end
-      self.simulation_logs.build(
-        date_at: date_at,
-        fund: fund,
-        share: share,
-        net_value: value,
-        event: event.join(', ')
-      )
+      unless event.empty?
+        self.simulation_logs.build(
+          date_at: date_at,
+          fund: fund,
+          share: share,
+          net_value: value,
+          event: event.join(', ')
+        )
+      end
     end
 
     self.save

@@ -36,4 +36,11 @@ class SimulationsController < ApplicationController
       ).reverse
     end
   end
+
+  def destroy
+    @simulation = Simulation.find(params[:id])
+    @simulation.destroy
+    flash[:success] = "Simulation was deleted"
+    redirect_to simulations_path
+  end
 end
