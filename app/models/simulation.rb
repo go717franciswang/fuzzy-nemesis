@@ -37,6 +37,10 @@ class Simulation < ActiveRecord::Base
     )
     annuity_deposit_date = annuity_schedule.next_deposit_date
 
+    scenarios_tracker = ScenariosTracker.new(
+      self.simulation_scenarios, self.start_date
+    )
+
     statistics.prices.each do |price|
       date_at = price.date_at
       next if date_at < statistics.report_start_date
@@ -56,6 +60,8 @@ class Simulation < ActiveRecord::Base
         annuity_deposit_date = annuity_schedule.next_deposit_date
       end
       self.simulation_scenarios.each do |scenario|
+        next unless scenarios_tracker.time_to_act_on?(scenario, date_at)
+        
         stat = statistics.get_stat(scenario[:stat], date_at, 
              scenario[:timespan_length], scenario[:timespan_unit])
         # puts "date_at: #{date_at}"
@@ -100,6 +106,8 @@ class Simulation < ActiveRecord::Base
             fund += dollar_amount
             share -= dollar_amount / stat
           end
+
+          scenarios_tracker.act_on(scenario, date_at)
         end
       end
       unless event.empty?
