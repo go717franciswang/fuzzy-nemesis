@@ -1,6 +1,7 @@
 class SimulationScenario < ActiveRecord::Base
   attr_accessible :simulation_id, :action, :amount,
-    :unit, :operator, :stat, :timespan_length, :timespan_unit
+    :unit, :operator, :stat, :timespan_length, :timespan_unit,
+    :frequency, :frequency_type
 
   validates :action, presence: true, inclusion: { in: %w( Buy Sell ) }
   validates :amount, presence: true, 
@@ -12,6 +13,10 @@ class SimulationScenario < ActiveRecord::Base
   validates :timespan_length, presence: true, 
     numericality: { only_integer: true }
   validates :timespan_unit, presence: true, inclusion: 
+    { in: %w( Days Weeks Months Quarters Years ) }
+  validates :frequency, presence: true, numericality: 
+    { only_integer: true, greater_than_or_equal_to: 1}
+  validates :frequency_type, presence: true, inclusion: 
     { in: %w( Days Weeks Months Quarters Years ) }
 
   belongs_to :simulation

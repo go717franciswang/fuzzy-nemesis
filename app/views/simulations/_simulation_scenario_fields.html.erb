@@ -1,5 +1,15 @@
 <fieldset class="scenario">
   <%= render 'shared/errors', builder: f %>
+  <%= t 'simulation.freq.every' %>
+  <%= f.text_field :frequency %>
+  <%= f.select :frequency_type, [
+    [t('simulation.tunit.day'), :Days],
+    [t('simulation.tunit.week'), :Weeks], 
+    [t('simulation.tunit.month'), :Months], 
+    [t('simulation.tunit.quarter'), :Quarters], 
+    [t('simulation.tunit.year'), :Years]
+  ] %>
+  ,<br />
   <%= f.select :action, [
     [t('simulation.action.buy'), :Buy], 
     [t('simulation.action.sell'), :Sell],
@@ -17,12 +27,6 @@
     [t('simulation.operator.gt_eq'), :Gt_eq],
     [t('simulation.operator.lt_eq'), :Lt_eq],
   ] %>
-  <%= f.select :stat, [
-    [t('simulation.stat.max'), :Max], 
-    [t('simulation.stat.min'), :Min], 
-    [t('simulation.stat.avg'), :Avg],
-  ] %>
-  <br />
   <%= t 'simulation.when.past' %>
   <%= f.text_field :timespan_length %>
   <%= f.select :timespan_unit, [
@@ -32,6 +36,13 @@
     [t('simulation.tunit.quarter'), :Quarters], 
     [t('simulation.tunit.year'), :Years]
   ] %>
+  <%= t 'simulation.when.s' %>
+  <br />
+  <%= f.select :stat, [
+    [t('simulation.stat.max'), :Max], 
+    [t('simulation.stat.min'), :Min], 
+    [t('simulation.stat.avg'), :Avg],
+  ] %>
   <%= f.hidden_field :_destroy %>
-  <%= link_to 'remove', '#', class: 'remove_fields' %>
+  <%= link_to t('stock.delete'), '#', class: 'remove_fields' %>
 </fieldset>

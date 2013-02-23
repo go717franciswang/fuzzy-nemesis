@@ -43,7 +43,6 @@ class Simulation < ActiveRecord::Base
       # puts "date_at: #{date_at}"
       # puts "annuity_deposit_date: #{annuity_deposit_date}"
       stock_id = price.stock_id
-      value = fund + share * price.close
       event = []
       if price == statistics.report_start_date
         event << :START
@@ -104,6 +103,7 @@ class Simulation < ActiveRecord::Base
         end
       end
       unless event.empty?
+        value = fund + share * price.close
         self.simulation_logs.build(
           date_at: date_at,
           fund: fund,

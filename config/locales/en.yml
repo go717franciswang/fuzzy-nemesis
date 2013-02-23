@@ -51,6 +51,10 @@ en:
     action:
       buy: "Buy"
       sell: "Sell"
+    stat:
+      max: "Maximum"
+      min: "Minimum"
+      avg: "Average"
     unit:
       shares: "Shares"
       dshares: "Dollar shares"
@@ -62,9 +66,12 @@ en:
       month: "Months"
       quarter: "Quarters"
       year: "Years"
+    freq:
+      every: "Every"
     when: 
       price: "When stock price is"
-      past: "in the past"
+      past: "past"
+      s: "'s"
     operator:
       gt_eq: 'Greater than or equal to'
       lt_eq: 'Less than or equal to'
@@ -73,7 +80,7 @@ en:
       event: "Event"
       fund: "Fund"
       net_val: "Net value"
-  error:
+  errors:
     count: 'The form contains '
     e: 'error'
   will_paginate:

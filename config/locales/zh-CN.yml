@@ -55,15 +55,22 @@ zh-CN:
       dshares: "现金股份"
       pfund: "%的现金"
       pshares: "%的股份"
+    stat:
+      max: "最高"
+      min: "最低"
+      avg: "平均值"
     tunit:
       day: "日"
       week: "周"
       month: "月"
       quarter: "季"
       year: "年"
+    freq:
+      every: "每"
     when: 
       price: "当股票价格"
-      past: "在前"
+      past: "前"
+      s: "的"
     operator:
       gt_eq: '大于或者等于'
       lt_eq: '小于或者等于'
@@ -72,7 +79,7 @@ zh-CN:
       event: "事件"
       fund: "现金"
       net_val: "总资金"
-  error:
+  errors:
     count: '本表格有'
     e: '个问题'
     format: ! '%{attribute} %{message}'
@@ -269,9 +276,9 @@ zh-CN:
   #activemodel:
   #  errors:
   #    <<: *errors
-  #activerecord:
-  #  errors:
-  #    <<: *errors
+  # activerecord:
+  #   errors:
+  #     <<: *errors
   will_paginate:
     previous_label: "&#8592; 前"
     next_label: "后 &#8594;"

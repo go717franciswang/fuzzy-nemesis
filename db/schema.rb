@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218224157) do
+ActiveRecord::Schema.define(:version => 20130223210245) do
 
   create_table "annuity_freq_types", :force => true do |t|
     t.string   "name"
@@ -33,12 +33,6 @@ ActiveRecord::Schema.define(:version => 20130218224157) do
   end
 
   add_index "historical_prices", ["stock_id", "date_at"], :name => "index_historical_prices_on_stock_id_and_date_at", :unique => true
-
-  create_table "scenarios", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "simulation_logs", :force => true do |t|
     t.integer  "simulation_id"
@@ -62,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20130218224157) do
     t.string   "stat"
     t.integer  "timespan_length"
     t.string   "timespan_unit"
+    t.integer  "frequency"
+    t.string   "frequency_type"
   end
 
   create_table "simulations", :force => true do |t|
