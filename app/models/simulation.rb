@@ -1,4 +1,6 @@
 class Simulation < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
+
   attr_accessible :stock_id, :start_date, :end_date, :start_amount,
     :annuity, :annuity_freq_type_id, :simulation_scenarios_attributes,
     :start_shares
@@ -49,13 +51,13 @@ class Simulation < ActiveRecord::Base
       stock_id = price.stock_id
       event = []
       if price == statistics.report_start_date
-        event << :START
+        event << :Start
       end
       if price == statistics.report_end_date
-        event << :END
+        event << :End
       end
       if self.annuity > 0.0 and annuity_deposit_date <= date_at
-        event << :ANNUITY
+        event << :Deposit
         fund += self.annuity
         annuity_deposit_date = annuity_schedule.next_deposit_date
       end
@@ -77,7 +79,6 @@ class Simulation < ActiveRecord::Base
         end
 
         if take_action
-          event << scenario[:action].upcase 
           dollar_amount = case scenario[:unit].to_sym
           when :Shares
             scenario[:amount] * stat
@@ -99,15 +100,17 @@ class Simulation < ActiveRecord::Base
             dollar_amount = fund if dollar_amount > fund
             dollar_amount -= dollar_amount % stat
             fund -= dollar_amount
-            share += dollar_amount / stat
+            share_delta = dollar_amount / stat
           when :Sell
             dollar_amount = share * stat if dollar_amount < share * stat
             dollar_amount -= dollar_amount % stat
             fund += dollar_amount
-            share -= dollar_amount / stat
+            share_delta = -dollar_amount / stat
           end
 
+          share += share_delta
           scenarios_tracker.act_on(scenario, date_at)
+          event << "#{scenario[:action]} #{pluralize(share_delta.round, 'share')}"
         end
       end
       unless event.empty?
