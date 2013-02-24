@@ -25,7 +25,7 @@ zh-CN:
     date: "日期"
     high: "高"
     low: "低"
-    Open: "开"
+    open: "开"
     close: "关"
     volume: "成交量"
     adj_close: "调整关闭"
