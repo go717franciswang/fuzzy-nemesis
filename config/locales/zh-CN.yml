@@ -45,6 +45,7 @@ zh-CN:
       quarterly: "每季"
       yearly: "每年"
     scenario: "情况"
+    deposit: "存"
     add_scenario: "添加情况"
     run: "动起来！"
     action:

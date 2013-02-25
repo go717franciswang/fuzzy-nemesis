@@ -66,6 +66,7 @@ class Simulation < ActiveRecord::Base
         
         stat = statistics.get_stat(scenario[:stat], date_at, 
              scenario[:timespan_length], scenario[:timespan_unit])
+        next unless stat
         # puts "date_at: #{date_at}"
         # puts "stat type: #{scenario[:stat]}"
         # puts "timespan_length: #{scenario[:timespan_length]}"

@@ -2,6 +2,7 @@
 <% if @simulations.empty? -%>
   <tr><td><%= t 'stock.no_simulation_results' %></td></tr>
 <% else -%>
+  <!--
   <table>
     <tr>
       <th><%= t 'stock.symbol' %></th>
@@ -15,6 +16,7 @@
       <th><%= t 'simulation.annuity_freq' %></th>
       <th><%= t 'stock.delete' %></th>
     </tr>
-    <%= render @simulations %>
   </table>
+  -->
+  <%= render @simulations %>
 <% end -%>

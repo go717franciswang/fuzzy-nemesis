@@ -1,3 +1,4 @@
+<!--
 <tr>
   <% if simulation.stock -%>
     <td><%= link_to simulation.stock.quote.upcase, 
@@ -18,3 +19,29 @@
   <td><%= link_to 'X', simulation_path(simulation.id), 
     method: :delete, confirm: t('message.confirm') %></td>
 </tr>
+-->
+
+<ul class="unstyled simulation">
+  <li>
+    <%= simulation.stock.quote.upcase %>:
+    <%= simulation.start_date %> to <%= simulation.end_date %>
+  </li>
+  <li>
+    <%= t 'simulation.amount' %>: <%= simulation.start_amount %>, 
+    <%= t 'simulation.shares' %>: <%= simulation.start_shares %>
+  </li>
+  <% if simulation.annuity_freq_type -%>
+    <li>
+      <%= t 'simulation.deposit' %> <%= simulation.annuity %> 
+      <%= simulation.annuity_freq_type.name %>
+    </li>
+  <% end -%>
+  <li>
+    <%= link_to 'Results', logs_simulation_path(simulation.id) %>, 
+    <%= link_to 'Delete', simulation_path(simulation), method: :delete %>, 
+    <%= link_to 'Scenarios', '#', class: 'scenarios_link' %>
+    <ul class = "scenarios">
+      <%= render simulation.simulation_scenarios %>
+    </ul>
+  </li>
+</ul>

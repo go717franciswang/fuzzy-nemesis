@@ -16,8 +16,8 @@ class ScenariosTracker
     id = scenario[:id]
     times = @frequencies[id]
     while @next_new_valid_action_date[id] <= date_at
-      puts "times: #{times}"
-      puts "next date: #{@next_new_valid_action_date[id]}"
+      # puts "times: #{times}"
+      # puts "next date: #{@next_new_valid_action_date[id]}"
       @next_new_valid_action_date[id] = (
         case @frequency_types[id]
         when :Days

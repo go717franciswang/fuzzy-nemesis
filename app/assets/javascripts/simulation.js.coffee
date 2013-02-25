@@ -13,3 +13,7 @@ jQuery ->
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
+
+  $('ul.scenarios').hide()
+  $('.scenarios_link').click ->
+    $(@).siblings('ul.scenarios').toggle?()

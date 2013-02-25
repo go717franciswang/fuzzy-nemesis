@@ -46,6 +46,7 @@ en:
       quarterly: "Quarterly"
       yearly: "Yearly"
     scenario: "Scenarios"
+    deposit: "Deposit"
     add_scenario: "Add a scenario"
     run: "Run"
     action:
