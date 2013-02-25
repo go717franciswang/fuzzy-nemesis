@@ -38,7 +38,8 @@
   <% end -%>
   <li>
     <%= link_to 'Results', logs_simulation_path(simulation.id) %>, 
-    <%= link_to 'Delete', simulation_path(simulation), method: :delete %>, 
+    <%= link_to 'Delete', simulation_path(simulation), 
+      method: :delete, confirm: t('message.confirm') %>, 
     <%= link_to 'Scenarios', '#', class: 'scenarios_link' %>
     <ul class = "scenarios">
       <%= render simulation.simulation_scenarios %>
