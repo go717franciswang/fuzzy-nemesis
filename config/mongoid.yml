@@ -1,3 +1,5 @@
+production:
+  uri: <%= ENV['MONGOLAB_URI'] %>
 development:
   # Configure available database sessions. (required)
   sessions:
@@ -78,12 +80,3 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
-production:
-  uri: <%= ENV['MONGOLAB_URI'] %>
-  sessions:
-    default:
-      database: heroku_app12200205
-      username: heroku_app12200205
-      password: PH7ge6kk
-      hosts:
-        - ds047447.mongolab.com:47447
