@@ -80,3 +80,10 @@ test:
         retry_interval: 0
 production:
   uri: <%= ENV['MONGOLAB_URI'] %>
+  sessions:
+    default:
+      database: heroku_app12200205
+      username: heroku_app12200205
+      password: PH7ge6kk
+      hosts:
+        - ds047447.mongolab.com:47447
