@@ -5,13 +5,14 @@ require "json"
 class Stock < ActiveRecord::Base
   attr_accessible :name, :quote, :start_date, :end_date,
     :sector, :industry, :full_time_employees, :refreshed_at
-  has_many :historical_prices, dependent: :destroy
   has_many :simulations, dependent: :destroy
   validates :name, presence: true
   validates :quote, presence: true
 
+  before_destroy :destroy_historical_prices
+
   def earliest_date
-    last_record = self.historical_prices.order('date_at desc').last
+    last_record = self.historical_prices.desc(:date_at).last
     return Date.today - 1 unless last_record
     return last_record.date_at if last_record
   end
@@ -44,7 +45,7 @@ class Stock < ActiveRecord::Base
   end
 
   def retrieve_historical_prices
-    last_entry = self.historical_prices.first
+    last_entry = self.historical_prices.desc(:date_at).first
     if last_entry
       start_at = last_entry.dup.date_at
       # make sure the last record is refreshed in case it 
@@ -78,19 +79,17 @@ class Stock < ActiveRecord::Base
         prices = data['query']['results']['quote'] 
         rows = []
         prices.each do |price|
-          # puts "date: #{price['Date']}"
-          rows << [
-            self.id,
-            price['Date'],
-            price['High'],
-            price['Low'],
-            price['Open'],
-            price['Close'],
-            price['Volume'],
-            price['Adj_Close'],
-          ]
+          historical_price = HistoricalPrice.new
+          historical_price[:stock_id] = self.id
+          historical_price[:date_at] = price['Date']
+          historical_price[:high] = price['High']
+          historical_price[:low] = price['Low']
+          historical_price[:open] = price['Open']
+          historical_price[:close] = price['Close']
+          historical_price[:volume] = price['Volume']
+          historical_price[:adj_close] = price['Adj_Close']
+          historical_price.save
         end
-        HistoricalPrice.import columns, rows, validate: false
       end
       start_at += (batch_size + 1)
       end_at = [start_at + batch_size, self.end_date].min
@@ -106,5 +105,14 @@ class Stock < ActiveRecord::Base
   def refreshed_today?
     return false unless self.refreshed_at
     return self.refreshed_at.to_date == Date.today
+  end
+
+  def historical_prices
+    HistoricalPrice.where(stock_id: self.id)
+  end
+
+  private
+  def destroy_historical_prices
+    self.historical_prices.delete
   end
 end

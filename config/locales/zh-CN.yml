@@ -284,4 +284,11 @@ zh-CN:
     previous_label: "&#8592; 前"
     next_label: "后 &#8594;"
     page_gap: "&hellip;"
+  views:
+    pagination:
+      first: "最前"
+      last: "最后"
+      previous: "&#8592; 前"
+      next: "后 &#8594;"
+      truncate: "..."
 

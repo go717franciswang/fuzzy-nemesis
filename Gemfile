@@ -4,9 +4,12 @@ gem 'rails', '3.2.9'
 gem 'bootstrap-sass', '2.1'
 gem 'faker'
 gem 'will_paginate'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 gem 'bootstrap-will_paginate'
 gem 'girl_friday'
 gem 'activerecord-import'
+gem 'mongoid', '~> 3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

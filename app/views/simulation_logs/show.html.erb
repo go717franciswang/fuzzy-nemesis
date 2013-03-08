@@ -1,7 +1,7 @@
 <h1><%= t 'simulation.log.title' %></h1>
 <%= render @simulation %>
-<%= will_paginate @simulation_logs %>
-<table>
+<%= paginate @simulation_logs %>
+<table class="table table-striped table-hover table-border">
   <tr>
     <th><%= t 'stock.date' %></th>
     <th><%= t 'simulation.log.event' %></th>
@@ -11,4 +11,4 @@
   </tr>
   <%= render @simulation_logs %>
 </table>
-<%= will_paginate @simulation_logs %>
+<%= paginate @simulation_logs %>

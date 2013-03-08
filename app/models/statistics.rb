@@ -7,10 +7,9 @@ class Statistics
     @end_date = end_date
     @scenarios = scenarios
     @prices = Stock.find(stock_id).historical_prices.where(
-      'date_at >= ? and date_at <= ?', 
-      self.stat_start_date, 
-      @end_date
-    ).order('date_at asc')
+      :date_at.gte => self.stat_start_date,
+      :date_at.lte => @end_date
+    ).asc(:date_at)
     @date_prices = {}
     @report_start_date = nil
     @prices.each do |price|

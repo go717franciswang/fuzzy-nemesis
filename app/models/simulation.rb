@@ -4,14 +4,14 @@ class Simulation < ActiveRecord::Base
   attr_accessible :stock_id, :start_date, :end_date, :start_amount,
     :annuity, :annuity_freq_type_id, :simulation_scenarios_attributes,
     :start_shares
-  has_many :simulation_logs, dependent: :destroy
-  belongs_to :annuity_freq_type
   has_many :simulation_scenarios, dependent: :destroy
+  belongs_to :annuity_freq_type
   accepts_nested_attributes_for :simulation_scenarios, allow_destroy: true
   # has_many :scenarios, through: :simulation_scenarios
   belongs_to :stock
 
   after_initialize :after_initialize
+  before_destroy :destroy_simulation_logs
 
   def after_initialize
     return unless self.new_record?
@@ -28,7 +28,7 @@ class Simulation < ActiveRecord::Base
   end
 
   def simulate
-    SimulationLog.where(simulation_id: self.id).delete_all
+    self.destroy_simulation_logs
     statistics = Statistics.new(self.start_date, self.end_date, 
                            self.stock_id, self.simulation_scenarios)
 
@@ -43,7 +43,7 @@ class Simulation < ActiveRecord::Base
       self.simulation_scenarios, self.start_date
     )
 
-    statistics.prices.each do |price|
+    statistics.prices.asc(:date_at).each do |price|
       date_at = price.date_at
       next if date_at < statistics.report_start_date
       # puts "date_at: #{date_at}"
@@ -116,16 +116,23 @@ class Simulation < ActiveRecord::Base
       end
       unless event.empty?
         value = fund + share * price.close
-        self.simulation_logs.build(
-          date_at: date_at,
-          fund: fund,
-          share: share,
-          net_value: value,
-          event: event.join(', ')
-        )
+        log = self.simulation_logs.build
+        log[:date_at] = date_at
+        log[:fund] = fund
+        log[:share] = share
+        log[:net_value] = value
+        log[:event] = event.join(', ')
+        log.save
       end
     end
 
-    self.save
+  end
+
+  def simulation_logs
+    SimulationLog.where(simulation_id: self.id)
+  end
+
+  def destroy_simulation_logs
+    self.simulation_logs.delete
   end
 end

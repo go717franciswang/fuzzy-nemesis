@@ -25,6 +25,15 @@ textarea {
   }
 }
 
+// logo
+#logo {
+  font-size: 25px;
+  font-variant: small-caps;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+}
+
 // scenarios
 .scenario, .simulation {
   //max-width: 300px;

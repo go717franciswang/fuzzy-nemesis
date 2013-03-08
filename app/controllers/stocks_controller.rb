@@ -22,9 +22,7 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find(params[:id])
-    @prices = @stock.historical_prices.order('date_at desc').paginate(
-      page: params[:page]
-    )
+    @prices = @stock.historical_prices.desc(:date_at).page(params[:page]).per(50)
   end
 
   def refresh

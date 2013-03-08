@@ -5,8 +5,8 @@
 <div>
   <%= link_to t('stock.simulation_results'), simulations_stock_path(@stock.id) %>
 </div>
-<%= will_paginate @prices %>
-<table>
+<%= paginate @prices %>
+<table class="table-condensed table-hover table-striped table-bordered">
   <tr>
     <td><%= t 'stock.date' %></td>
     <td><%= t 'stock.high' %></td>
@@ -28,4 +28,4 @@
     </tr>
   <% end -%>
 </table>
-<%= will_paginate @prices %>
+<%= paginate @prices %>
