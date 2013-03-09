@@ -8,13 +8,13 @@
 <%= paginate @prices %>
 <table class="table-condensed table-hover table-striped table-bordered">
   <tr>
-    <td><%= t 'stock.date' %></td>
-    <td><%= t 'stock.high' %></td>
-    <td><%= t 'stock.low' %></td>
-    <td><%= t 'stock.open' %></td>
-    <td><%= t 'stock.close' %></td>
-    <td><%= t 'stock.volume' %></td>
-    <td><%= t 'stock.adj_close' %></td>
+    <th><%= t 'stock.date' %></th>
+    <th><%= t 'stock.high' %></th>
+    <th><%= t 'stock.low' %></th>
+    <th><%= t 'stock.open' %></th>
+    <th><%= t 'stock.close' %></th>
+    <th><%= t 'stock.volume' %></th>
+    <th><%= t 'stock.adj_close' %></th>
   </tr>
   <% @prices.each do |price| -%>
     <tr>

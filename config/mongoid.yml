@@ -1,11 +1,13 @@
 production:
   sessions:
     default:
+      <% if ENV['MONGOID_URI'] %>
       username: <%= ENV['MONGOID_USERNAME'] %>
       password: <%= ENV['MONGOID_PASSWORD'] %>
       database: <%= ENV['MONGOID_DATABASE'] %>
       hosts: 
        - <%= ENV['MONGOID_HOST'] %>:<%= ENV['MONGOID_PORT'] %>
+      <% end %>
 development:
   # Configure available database sessions. (required)
   sessions:

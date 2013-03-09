@@ -80,6 +80,7 @@ zh-CN:
       event: "事件"
       fund: "现金"
       net_val: "总资金"
+      info: "信息"
   errors:
     count: '本表格有'
     e: '个问题'

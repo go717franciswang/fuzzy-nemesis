@@ -4,4 +4,13 @@
   <td><%= simulation_log.fund.round(2) %></td>
   <td><%= simulation_log.share %></td>
   <td><%= simulation_log.net_value.round(2) %></td>
+  <td>
+  <% if simulation_log.criterias and not simulation_log.criterias.empty? -%>
+    <div class="criteria-info"
+      data-title="<%= t 'simulation.log.info' %>"
+      data-content="<%= simulation_log.criterias.join('\n') %>" >
+      <i class="icon-info-sign"></i>
+    </div>
+  <% end -%>
+  </td>
 </tr>

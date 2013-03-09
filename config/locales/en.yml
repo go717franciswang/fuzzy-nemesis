@@ -81,6 +81,7 @@ en:
       event: "Event"
       fund: "Fund"
       net_val: "Net value"
+      info: "Info"
   errors:
     count: 'The form contains '
     e: 'error'

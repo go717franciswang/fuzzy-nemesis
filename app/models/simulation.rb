@@ -46,14 +46,13 @@ class Simulation < ActiveRecord::Base
     statistics.prices.asc(:date_at).each do |price|
       date_at = price.date_at
       next if date_at < statistics.report_start_date
-      # puts "date_at: #{date_at}"
-      # puts "annuity_deposit_date: #{annuity_deposit_date}"
       stock_id = price.stock_id
       event = []
-      if price == statistics.report_start_date
+      criterias = []
+      if price.date_at == statistics.report_start_date
         event << :Start
       end
-      if price == statistics.report_end_date
+      if price.date_at == statistics.report_end_date
         event << :End
       end
       if self.annuity > 0.0 and annuity_deposit_date <= date_at
@@ -61,23 +60,26 @@ class Simulation < ActiveRecord::Base
         fund += self.annuity
         annuity_deposit_date = annuity_schedule.next_deposit_date
       end
+
       self.simulation_scenarios.each do |scenario|
-        next unless scenarios_tracker.time_to_act_on?(scenario, date_at)
-        
+        time_to_act = scenarios_tracker.time_to_act_on?(scenario, date_at)
+        next unless time_to_act
+
+        criteria = "#{scenario[:action]} if price "
         stat = statistics.get_stat(scenario[:stat], date_at, 
              scenario[:timespan_length], scenario[:timespan_unit])
         next unless stat
-        # puts "date_at: #{date_at}"
-        # puts "stat type: #{scenario[:stat]}"
-        # puts "timespan_length: #{scenario[:timespan_length]}"
-        # puts "timespan_unit: #{scenario[:timespan_unit]}"
-        # puts "stat: #{stat}"
+
         case scenario[:operator].to_sym
-        when :Gt_eq
-          take_action = (price[:low] <= stat)
         when :Lt_eq
+          take_action = (price[:low] <= stat)
+          criteria += '<= '
+        when :Gt_eq
           take_action = (price[:high] >= stat)
+          criteria += '>= '
         end
+        criteria += "#{stat}"
+        criterias << criteria
 
         if take_action
           dollar_amount = case scenario[:unit].to_sym
@@ -90,9 +92,6 @@ class Simulation < ActiveRecord::Base
           when :Pcg_of_shares
             scenario[:amount].to_f / 100 * shares * stat
           end
-          # puts "unit: #{scenario[:unit]}"
-          # puts "dollar_amount: #{dollar_amount}"
-          # puts "fund: #{fund}"
 
           stat = price[:high] if stat > price[:high]
           stat = price[:low] if stat < price[:low]
@@ -110,8 +109,8 @@ class Simulation < ActiveRecord::Base
           end
 
           share += share_delta
-          scenarios_tracker.act_on(scenario, date_at)
           event << "#{scenario[:action]} #{pluralize(share_delta.round, 'share')}"
+          scenarios_tracker.act_on(scenario, date_at)
         end
       end
       unless event.empty?
@@ -122,6 +121,7 @@ class Simulation < ActiveRecord::Base
         log[:share] = share
         log[:net_value] = value
         log[:event] = event.join(', ')
+        log[:criterias] = criterias
         log.save
       end
     end

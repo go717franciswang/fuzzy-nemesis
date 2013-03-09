@@ -8,6 +8,7 @@ class SimulationLog
   field :fund, type: Float
   field :net_value, type: Float
   field :share, type: Integer
+  field :criterias, type: Array
 
   index({ simulation_id: 1, date_at: 1 }, { unique: true })
 
